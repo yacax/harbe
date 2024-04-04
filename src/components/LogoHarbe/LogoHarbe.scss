@@ -1,0 +1,13 @@
+.logo-harbe {
+  padding: 0 !important;
+  margin: 0 !important;
+  min-width: 40px !important;
+  &__image-background {
+    padding: 0;
+    background-image: url('../../images/logo-harbe.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 44px;
+    height: 40px;
+  }
+}
