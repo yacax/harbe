@@ -1,3 +1,3 @@
 export interface ExcelRow {
-    [key: string]: string | number;
-  }
+  [key: string]: string | number;
+}
