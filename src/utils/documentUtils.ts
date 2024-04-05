@@ -2,7 +2,7 @@ import JSZip from 'jszip';
 import PizZip from 'pizzip';
 import Docxtemplater from 'docxtemplater';
 import { ExcelRow } from '../types';
-import {FILE_OPTIONS } from './config';
+import { FILE_OPTIONS } from './config';
 
 export const generateDocumentsFromTemplate = async (
   documentTemplateFile: File,
@@ -11,9 +11,9 @@ export const generateDocumentsFromTemplate = async (
   try {
     const templateContent = await readFileAsync(documentTemplateFile);
     const documentsZipBlob = new JSZip();
-    
+
     if (typeof templateContent !== 'string') {
-      throw new Error("Template file reading did not return a string");
+      throw new Error('Template file reading did not return a string');
     }
 
     data.forEach((row, index) => {
@@ -24,9 +24,12 @@ export const generateDocumentsFromTemplate = async (
       documentTemplate.render();
 
       const documentBlob = documentTemplate.getZip().generate({ type: 'blob' });
-      const firstRowKey = Object.keys(row)[0];   
+      const firstRowKey = Object.keys(row)[0];
       const extraStringForName = row[firstRowKey] || index;
-      documentsZipBlob.file(FILE_OPTIONS.NAME_TEMPLATE(index, extraStringForName ), documentBlob);
+      documentsZipBlob.file(
+        FILE_OPTIONS.NAME_TEMPLATE(index, extraStringForName),
+        documentBlob
+      );
     });
 
     return await documentsZipBlob.generateAsync({ type: 'blob' });
@@ -35,13 +38,12 @@ export const generateDocumentsFromTemplate = async (
   }
 };
 
-
 const readFileAsync = (file: File): Promise<string> => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.onload = () => {
       if (reader.result === null) {
-        reject(new Error("Failed to read file"));
+        reject(new Error('Failed to read file'));
       } else {
         resolve(reader.result as string);
       }

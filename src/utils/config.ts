@@ -15,7 +15,8 @@ export const GUI_FEATURES = {
 export const FILE_OPTIONS = {
   NAME_MAX_LENGTH: 30,
   NAME_MIN_LENGTH: 3,
-  NAME_TEMPLATE: (index: number, extraString?: string | number) => `Document_${index}_${extraString}.docx`,
+  NAME_TEMPLATE: (index: number, extraString?: string | number) =>
+    `Document_${index}_${extraString}.docx`,
 };
 
 // SEO options

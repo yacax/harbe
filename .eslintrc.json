@@ -20,8 +20,10 @@
     },
     "plugins": [
         "@typescript-eslint",
-        "react"
+        "react",
+        "prettier"
     ],
     "rules": {
+        "prettier/prettier": "error"
     }
 }
