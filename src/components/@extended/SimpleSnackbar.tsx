@@ -5,7 +5,7 @@ import { clearSnackbar } from '../../redux/snackbarInfo/snackbarInfoSlice';
 import Snackbar, { SnackbarCloseReason } from '@mui/material/Snackbar';
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
 import { selectSnackbarState } from '../../redux/snackbarInfo/snackbarInfoSelectors';
-import { SNACKBAR_AUTO_HIDE_DURATION } from '../../utils/config';
+import { GUI_FEATURES } from '../../utils/config';
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) => (
   <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />
@@ -41,7 +41,7 @@ const SimpleSnackbar = () => {
   return (
     <Snackbar
       open={isOpen}
-      autoHideDuration={SNACKBAR_AUTO_HIDE_DURATION}
+      autoHideDuration={GUI_FEATURES.SNACKBAR_AUTO_HIDE_DURATION}
       onClose={handleClose}
     >
       <Alert severity={snackbarSeverity} sx={{ width: '100%' }}>
