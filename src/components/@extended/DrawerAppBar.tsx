@@ -13,7 +13,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import LogoHarbe from '../LogoHarbe/LogoHarbe';
-import { DRAWER_WIDTH } from '../../utils/config';
+import { GUI_FEATURES } from '../../utils/config';
 
 const navItems = ['Home', 'About'];
 
@@ -91,7 +91,7 @@ export default function DrawerAppBar() {
             display: { xs: 'block', sm: 'none' },
             '& .MuiDrawer-paper': {
               boxSizing: 'border-box',
-              width: DRAWER_WIDTH,
+              width: GUI_FEATURES.DRAWER_WIDTH,
             },
           }}
         >

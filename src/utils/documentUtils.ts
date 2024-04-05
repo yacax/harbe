@@ -2,6 +2,7 @@ import JSZip from 'jszip';
 import PizZip from 'pizzip';
 import Docxtemplater from 'docxtemplater';
 import { ExcelRow } from '../types';
+import {FILE_OPTIONS } from './config';
 
 export const generateDocumentsFromTemplate = async (
   documentTemplateFile: File,
@@ -23,7 +24,9 @@ export const generateDocumentsFromTemplate = async (
       documentTemplate.render();
 
       const documentBlob = documentTemplate.getZip().generate({ type: 'blob' });
-      documentsZipBlob.file(`Document_${index + 1}.docx`, documentBlob);
+      const firstRowKey = Object.keys(row)[0];   
+      const extraStringForName = row[firstRowKey] || index;
+      documentsZipBlob.file(FILE_OPTIONS.NAME_TEMPLATE(index, extraStringForName ), documentBlob);
     });
 
     return await documentsZipBlob.generateAsync({ type: 'blob' });
