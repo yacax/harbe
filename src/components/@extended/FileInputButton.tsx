@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Box, Button, Typography } from '@mui/material';
 import PostAddIcon from '@mui/icons-material/PostAdd';
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
@@ -11,6 +11,7 @@ interface FileInputButtonProps {
   acceptFileType: string;
   onFileSelect: (file: File) => void;
   buttonLabel?: string;
+  fileName?: string;
 }
 
 const FileInputButton: React.FC<FileInputButtonProps> = ({
@@ -18,15 +19,14 @@ const FileInputButton: React.FC<FileInputButtonProps> = ({
   acceptFileType,
   onFileSelect,
   buttonLabel = 'Upload Template',
+  fileName = '',
 }) => {
-  const [fileName, setFileName] = useState<string>('');
   const isDocumentTemplate = acceptFileType !== '.xlsx';
   const imageForUpload = isDocumentTemplate ? docImage : tableImage;
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
-      setFileName(file.name);
       onFileSelect(file);
     }
   };
