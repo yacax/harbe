@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react';
 import Container from '@mui/material/Container';
 import SimpleSnackbar from '../@extended/SimpleSnackbar';
 import Header from '../Header';
+import Footer from '../@extended/Footer';
 
 interface BasicLayoutProps {
   children: ReactNode;
@@ -21,6 +22,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = ({ children }) => {
       <Header />
       {children}
       <SimpleSnackbar />
+      <Footer />
     </Container>
   );
 };
