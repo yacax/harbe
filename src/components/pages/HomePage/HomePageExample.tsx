@@ -66,6 +66,7 @@ export default function HomePageExample() {
           backgroundColor={colorPrimary}
           ImageComponent={HomePageCertificateTemplateImage}
           buttonLabel="This Template Download"
+          downloadLink="/templates/certificate_template.docx"
         />
       </Box>
       <HomePageTable />

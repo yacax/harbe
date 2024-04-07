@@ -13,6 +13,7 @@ type CardProps = {
   backgroundColor: string;
   ImageComponent: React.ElementType;
   buttonLabel: string;
+  downloadLink?: string;
 };
 
 const CustomCard: React.FC<CardProps> = ({
@@ -21,6 +22,7 @@ const CustomCard: React.FC<CardProps> = ({
   backgroundColor,
   ImageComponent,
   buttonLabel,
+  downloadLink,
 }) => {
   return (
     <Card
@@ -40,9 +42,11 @@ const CustomCard: React.FC<CardProps> = ({
         <ImageComponent />
       </CardContent>
       <CardActions sx={{ justifyContent: 'flex-end' }}>
-        <Button size="small" variant="text">
-          {buttonLabel}
-        </Button>
+        <a href={downloadLink} download style={{ textDecoration: 'none' }}>
+          <Button size="small" variant="text">
+            {buttonLabel}
+          </Button>
+        </a>
       </CardActions>
     </Card>
   );
