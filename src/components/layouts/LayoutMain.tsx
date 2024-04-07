@@ -13,7 +13,8 @@ const BasicLayout: React.FC<BasicLayoutProps> = ({ children }) => {
       maxWidth="lg"
       sx={{
         position: 'relative',
-        px: { xs: 0, sm: 2, md: 4 },
+        px: { xs: 2, sm: 3, md: 4, lg: 0 },
+        py: { xs: 2, sm: 3, md: 4 },
         minHeight: '100vh',
       }}
     >
