@@ -21,5 +21,5 @@ export const FILE_OPTIONS = {
 
 // SEO options
 export const SEO_OPTIONS = {
-  GOOGLE_ANALYTICS_ID: 'xxxxxxxxxx',
+  GOOGLE_ANALYTICS_ID: 'G-TYKBL9E21N',
 };

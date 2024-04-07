@@ -18,7 +18,7 @@ const FileUploadForm: React.FC = () => {
   } = useFileProcessing();
 
   return (
-    <Paper style={{ padding: '20px', margin: '5px' }}>
+    <Paper sx={{ width: '100%', p: 2 }}>
       <Box
         sx={{
           display: 'flex',
