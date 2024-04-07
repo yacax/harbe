@@ -1,11 +1,11 @@
 import React from 'react';
 import './LogoHarbe.scss';
-import Button from '@mui/material/Button';
-import { Box } from '@mui/material';
+import { Button, Box } from '@mui/material';
+import { Link as RouterLink } from 'react-router-dom';
 
 const LogoTestMakerPng: React.FC = () => {
   return (
-    <Button className="logo-harbe">
+    <Button component={RouterLink} to="/" className="logo-harbe">
       <Box className="logo-harbe__image-background" />
     </Button>
   );

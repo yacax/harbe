@@ -47,6 +47,56 @@ const useFileProcessing = () => {
     downloadDocument(generatedDocumentsBlob, 'generated_documents.zip');
   };
 
+  // TODO: Refactor this function
+  const loadExampleFiles = async () => {
+    try {
+      const docResponse = await fetch('/templates/certificate_template.docx');
+      if (!docResponse.ok) {
+        dispatch(
+          addSnackbarInfo({
+            message: `Error loading example.docx: Status ${docResponse.status}`,
+            severity: 'error',
+          })
+        );
+        throw new Error(
+          `Error loading example.docx: Status ${docResponse.status}`
+        );
+      }
+      const docBlob = await docResponse.blob();
+      const docFile = new File([docBlob], 'certificate_template.docx', {
+        type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      });
+
+      const xlsResponse = await fetch('/templates/data_template.xlsx');
+      if (!xlsResponse.ok) {
+        dispatch(
+          addSnackbarInfo({
+            message: `Error loading example.xlsx: Status ${xlsResponse.status}`,
+            severity: 'error',
+          })
+        );
+        throw new Error(
+          `Error loading example.xlsx: Status ${xlsResponse.status}`
+        );
+      }
+      const xlsBlob = await xlsResponse.blob();
+      const xlsFile = new File([xlsBlob], 'data_template.xlsx', {
+        type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      });
+
+      setDocumentTemplateFile(docFile);
+      setExcelDataFile(xlsFile);
+    } catch (error) {
+      console.error('Error loading example files', error);
+      dispatch(
+        addSnackbarInfo({
+          message: 'Error processing files',
+          severity: 'error',
+        })
+      );
+    }
+  };
+
   return {
     documentTemplateFile,
     setDocumentTemplateFile,
@@ -55,6 +105,7 @@ const useFileProcessing = () => {
     generatedDocumentsBlob,
     processFiles,
     downloadDocuments,
+    loadExampleFiles,
   };
 };
 

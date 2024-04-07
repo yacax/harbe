@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
@@ -24,6 +25,9 @@ export default function DrawerAppBar() {
     setIsDrawerOpen((prevState) => !prevState);
   };
 
+  const getPath = (item: string) =>
+    item === 'Home' ? '/' : `/${item.toLowerCase()}`;
+
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
       <Typography variant="h6" sx={{ my: 2 }}>
@@ -33,7 +37,11 @@ export default function DrawerAppBar() {
       <List>
         {navItems.map((item) => (
           <ListItem key={item} disablePadding>
-            <ListItemButton sx={{ textAlign: 'center' }}>
+            <ListItemButton
+              sx={{ textAlign: 'center' }}
+              component={RouterLink}
+              to={getPath(item)}
+            >
               <ListItemText primary={item} />
             </ListItemButton>
           </ListItem>
@@ -72,7 +80,12 @@ export default function DrawerAppBar() {
 
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             {navItems.map((item) => (
-              <Button key={item} sx={{ color: '#fff' }}>
+              <Button
+                key={item}
+                sx={{ color: '#fff' }}
+                component={RouterLink}
+                to={getPath(item)}
+              >
                 {item}
               </Button>
             ))}

@@ -1,20 +1,9 @@
 import React from 'react';
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  Button,
-  Grid,
-  List,
-  ListItem,
-  ListItemText,
-  Paper,
-} from '@mui/material';
-
+import { Box, Button, Divider, Grid, Paper } from '@mui/material';
 import useFileProcessing from '../../../hooks/useFileProcessing';
 import FileInputButton from '../../@extended/FileInputButton';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import PsychologyAltIcon from '@mui/icons-material/PsychologyAlt';
+import { HomePageAccordion } from './HomePageAccordion';
+import AddStandartTemplateButton from '../../@extended/AddStandartTemplateButton';
 
 const FileUploadForm: React.FC = () => {
   const {
@@ -25,53 +14,44 @@ const FileUploadForm: React.FC = () => {
     generatedDocumentsBlob,
     processFiles,
     downloadDocuments,
+    loadExampleFiles,
   } = useFileProcessing();
 
   return (
     <Paper style={{ padding: '20px', margin: '5px' }}>
-      <Accordion
+      <Box
         sx={{
-          mb: {
-            xs: 2,
-            md: 3,
-          },
+          display: 'flex',
+          direction: 'row',
+          justifyContent: 'space-between',
         }}
       >
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1-content"
-          id="panel1-header"
-        >
-          <PsychologyAltIcon
-            sx={{
-              mr: 1,
-            }}
-          />
-          Instructions
-        </AccordionSummary>
-        <AccordionDetails>
-          <List>
-            <ListItem>
-              <ListItemText primary="1. Upload your document template and Excel data file." />
-            </ListItem>
-            <ListItem>
-              <ListItemText primary="2. Click on the button to generate documents." />
-            </ListItem>
-            <ListItem>
-              <ListItemText primary="3. Click on the button to download the generated documents." />
-            </ListItem>
-          </List>
-        </AccordionDetails>
-      </Accordion>
+        <HomePageAccordion />
+        <Divider orientation="vertical" flexItem />
+        <AddStandartTemplateButton
+          loadExampleFiles={loadExampleFiles}
+          lableText="Fill out the form with standard templates."
+        />
+      </Box>
 
       <form onSubmit={processFiles} noValidate>
-        <Grid container spacing={3}>
+        <Grid
+          container
+          spacing={3}
+          sx={{
+            mt: {
+              xs: 0.3,
+              md: 2,
+            },
+          }}
+        >
           <Grid item xs={12} md={6}>
             <FileInputButton
               id="document-template"
               acceptFileType=".docx"
               onFileSelect={setDocumentTemplateFile}
               buttonLabel="Upload Template"
+              fileName={documentTemplateFile?.name}
             />
           </Grid>
           <Grid item xs={12} md={6}>
@@ -80,6 +60,7 @@ const FileUploadForm: React.FC = () => {
               acceptFileType=".xlsx"
               onFileSelect={setExcelDataFile}
               buttonLabel="Upload Excel Data"
+              fileName={excelDataFile?.name}
             />
           </Grid>
           <Grid item xs={12} md={4}>
