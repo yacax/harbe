@@ -46,4 +46,4 @@ If you have any suggestions or questions related to the project, please feel fre
 
 ---
 
-&copy; [yacax](https://github.com/yacax), [Current Year]
+&copy; [yacax](https://github.com/yacax), 2024
