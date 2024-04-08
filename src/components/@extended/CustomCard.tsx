@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 import {
   Button,
   Card,
@@ -14,6 +15,7 @@ type CardProps = {
   ImageComponent: React.ElementType;
   buttonLabel: string;
   downloadLink?: string;
+  navigationLink?: string;
 };
 
 const CustomCard: React.FC<CardProps> = ({
@@ -23,7 +25,37 @@ const CustomCard: React.FC<CardProps> = ({
   ImageComponent,
   buttonLabel,
   downloadLink,
+  navigationLink,
 }) => {
+  let ButtonComponent;
+
+  if (downloadLink) {
+    ButtonComponent = (
+      <a href={downloadLink} download style={{ textDecoration: 'none' }}>
+        <Button size="small" variant="text">
+          {buttonLabel}
+        </Button>
+      </a>
+    );
+  } else if (navigationLink) {
+    ButtonComponent = (
+      <Button
+        size="small"
+        variant="text"
+        component={RouterLink}
+        to={navigationLink}
+      >
+        {buttonLabel}
+      </Button>
+    );
+  } else {
+    ButtonComponent = (
+      <Button size="small" variant="text">
+        {buttonLabel}
+      </Button>
+    );
+  }
+
   return (
     <Card
       sx={{
@@ -42,11 +74,7 @@ const CustomCard: React.FC<CardProps> = ({
         <ImageComponent />
       </CardContent>
       <CardActions sx={{ justifyContent: 'flex-end' }}>
-        <a href={downloadLink} download style={{ textDecoration: 'none' }}>
-          <Button size="small" variant="text">
-            {buttonLabel}
-          </Button>
-        </a>
+        {ButtonComponent}
       </CardActions>
     </Card>
   );

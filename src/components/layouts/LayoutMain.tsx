@@ -13,15 +13,17 @@ const BasicLayout: React.FC<BasicLayoutProps> = ({ children }) => {
     <Container
       maxWidth="lg"
       sx={{
-        position: 'relative',
-        px: { xs: 2, sm: 3, md: 4, lg: 0 },
-        py: { xs: 2, sm: 3, md: 4 },
+        display: 'flex',
+        flexDirection: 'column',
         minHeight: '100vh',
+        px: { xs: 2, sm: 3, md: 4 },
+        py: { xs: 2, sm: 3, md: 4 },
       }}
     >
       <Header />
       {children}
       <SimpleSnackbar />
+      <div style={{ flexGrow: 1 }}></div>
       <Footer />
     </Container>
   );

@@ -6,6 +6,7 @@ import NotFoundPage from './components/pages/NotFoundPage/NotFoundPage';
 import { SEO_OPTIONS } from './utils/config';
 import { useEffect } from 'react';
 import ReactGA from 'react-ga';
+import TemplatePage from './components/pages/TemplatesPage/TemplatesPage';
 
 function App() {
   useEffect(() => {
@@ -16,6 +17,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/templates" element={<TemplatePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useLocation } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
@@ -14,19 +14,19 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import LogoHarbe from '../LogoHarbe/LogoHarbe';
-import { GUI_FEATURES } from '../../utils/config';
-
-const navItems = ['Home', 'About'];
+import { NAVIGATION_ITEMS, GUI_FEATURES } from '../../utils/config';
 
 export default function DrawerAppBar() {
   const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
+  const location = useLocation();
 
   const handleDrawerToggle = () => {
     setIsDrawerOpen((prevState) => !prevState);
   };
 
-  const getPath = (item: string) =>
-    item === 'Home' ? '/' : `/${item.toLowerCase()}`;
+  const getPath = (path: string) =>
+    path === 'Home' ? '/' : `/${path.toLowerCase()}`;
+  const isActive = (path: string) => location.pathname === getPath(path);
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
@@ -35,10 +35,13 @@ export default function DrawerAppBar() {
       </Typography>
       <Divider />
       <List>
-        {navItems.map((item) => (
+        {NAVIGATION_ITEMS.map((item) => (
           <ListItem key={item} disablePadding>
             <ListItemButton
-              sx={{ textAlign: 'center' }}
+              sx={{
+                textAlign: 'center',
+                backgroundColor: isActive(item) ? '#f0f0f0' : 'transparent',
+              }}
               component={RouterLink}
               to={getPath(item)}
             >
@@ -79,10 +82,15 @@ export default function DrawerAppBar() {
           </Typography>
 
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-            {navItems.map((item) => (
+            {NAVIGATION_ITEMS.map((item) => (
               <Button
                 key={item}
-                sx={{ color: '#fff' }}
+                variant="text"
+                color="inherit"
+                sx={{
+                  borderBottom: isActive(item) ? '2px solid #fff' : 'none',
+                  borderRadius: 0,
+                }}
                 component={RouterLink}
                 to={getPath(item)}
               >

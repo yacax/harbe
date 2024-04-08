@@ -6,6 +6,7 @@ import {
   List,
   ListItem,
   ListItemText,
+  Link,
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import PsychologyAltIcon from '@mui/icons-material/PsychologyAlt';
@@ -39,6 +40,20 @@ export const HomePageAccordion = () => {
           </ListItem>
           <ListItem>
             <ListItemText primary="3. Click on the button to download the generated documents." />
+          </ListItem>
+          <ListItem>
+            <ListItemText
+              primary="Note on Fonts: Some templates, like the provided example, use specific fonts (e.g., Trebuchet MS and Cookie). While Trebuchet MS will likely be automatically substituted by your system, Cookie is a custom font. For optimal results, consider downloading and installing it. Please find the link below:"
+              secondary={
+                <Link
+                  href="https://fonts.google.com/specimen/Cookie?selection.family=Cookie"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Google Fonts
+                </Link>
+              }
+            />
           </ListItem>
         </List>
       </AccordionDetails>

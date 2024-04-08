@@ -47,7 +47,6 @@ const useFileProcessing = () => {
     downloadDocument(generatedDocumentsBlob, 'generated_documents.zip');
   };
 
-  // TODO: Refactor this function
   const loadExampleFiles = async () => {
     try {
       const docResponse = await fetch('/templates/certificate_template.docx');

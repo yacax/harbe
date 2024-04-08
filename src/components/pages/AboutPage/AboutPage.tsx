@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Paper } from '@mui/material';
+import { Typography, Paper, Link, List, ListItem } from '@mui/material';
 import LayoutMain from '../../layouts/LayoutMain';
 
 export default function AboutPage() {
@@ -26,12 +26,34 @@ export default function AboutPage() {
           file.
         </Typography>
         <Typography variant="body1" paragraph>
-          <b>Future Development Plans:</b> We are looking forward to expanding
+          <b>Future Development Plans:</b> I&apos;m looking forward to expanding
           the application’s capabilities. Soon, a templates page and
           multi-language support will be added. If you&apos;re interested in
-          contributing a template to our website, please feel free to reach out
-          to us.
+          contributing a template to this web-app, please feel free to reach out
+          to me. You can find my contact information and GitHub links below:
         </Typography>
+        <List>
+          <ListItem>
+            My GitHub profile:&nbsp;
+            <Link
+              href="https://github.com/yacax"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              https://github.com/yacax
+            </Link>
+          </ListItem>
+          <ListItem>
+            Project repository:&nbsp;
+            <Link
+              href="https://github.com/yacax/harbe"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              https://github.com/yacax/harbe
+            </Link>
+          </ListItem>
+        </List>
       </Paper>
     </LayoutMain>
   );

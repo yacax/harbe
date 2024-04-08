@@ -2,7 +2,7 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import HomePageCertificateResultImage from './HomePageCertificateImage';
-import { useTheme } from '@mui/material';
+import { Button, useTheme } from '@mui/material';
 import HomePageCertificateTemplateImage from './HomePageCertificateTemplateImage';
 import CustomCard from '../../@extended/CustomCard';
 import HomePageTable from './HomePageTable';
@@ -21,6 +21,10 @@ export default function HomePageExample() {
         gap: {
           xs: '0.5rem',
           lg: '1rem',
+        },
+        mt: {
+          xs: '1rem',
+          md: '2rem',
         },
       }}
     >
@@ -59,6 +63,7 @@ export default function HomePageExample() {
           backgroundColor={colorSecondary}
           ImageComponent={HomePageCertificateResultImage}
           buttonLabel="Download other cool templates!"
+          navigationLink="/templates"
         />
         <CustomCard
           title="Template"
@@ -70,6 +75,15 @@ export default function HomePageExample() {
         />
       </Box>
       <HomePageTable />
+      <a
+        href="/templates/data_template.xlsx"
+        download
+        style={{ textDecoration: 'none' }}
+      >
+        <Button size="small" variant="text">
+          Data Template Download
+        </Button>
+      </a>
     </Box>
   );
 }

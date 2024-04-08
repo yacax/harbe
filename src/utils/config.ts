@@ -1,3 +1,6 @@
+// Navigation options
+export const NAVIGATION_ITEMS = ['Home', 'Templates', 'About'];
+
 // Theme options
 export const MAIN_THEME_COLOURS = {
   PRIMARY_MAIN: 'rgb(25, 118, 210)',
