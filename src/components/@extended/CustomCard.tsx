@@ -74,7 +74,7 @@ const CustomCard: React.FC<CardProps> = ({
         <ImageComponent />
       </CardContent>
       <CardActions sx={{ justifyContent: 'flex-end' }}>
-        {ButtonComponent}        
+        {ButtonComponent}
       </CardActions>
     </Card>
   );
