@@ -14,6 +14,8 @@ const useFileProcessing = () => {
   const [excelDataFile, setExcelDataFile] = useState<File | null>(null);
   const [generatedDocumentsBlob, setGeneratedDocumentsBlob] =
     useState<Blob | null>(null);
+  const [shouldDownloadAfterProcessing, setShouldDownloadAfterProcessing] =
+    useState(false);
 
   const processFiles = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -31,6 +33,9 @@ const useFileProcessing = () => {
             severity: 'success',
           })
         );
+        if (shouldDownloadAfterProcessing && blob) {
+          downloadDocument(blob, 'generated_documents.zip');
+        }
       } catch (error) {
         console.error('Error processing files', error);
         dispatch(
@@ -41,6 +46,7 @@ const useFileProcessing = () => {
         );
       }
     }
+    setShouldDownloadAfterProcessing(false);
   };
 
   const downloadDocuments = async () => {
@@ -103,6 +109,7 @@ const useFileProcessing = () => {
     setExcelDataFile,
     generatedDocumentsBlob,
     processFiles,
+    setShouldDownloadAfterProcessing,
     downloadDocuments,
     loadExampleFiles,
   };

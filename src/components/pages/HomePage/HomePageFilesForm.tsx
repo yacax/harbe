@@ -1,9 +1,9 @@
 import React from 'react';
 import { Box, Button, Divider, Grid, Paper } from '@mui/material';
-import useFileProcessing from '../../../hooks/useFileProcessing';
-import FileInputButton from '../../@extended/FileInputButton';
 import { HomePageAccordion } from './HomePageAccordion';
 import AddStandartTemplateButton from '../../@extended/AddStandartTemplateButton';
+import useFileProcessing from '../../../hooks/useFileProcessing';
+import FileInputButton from '../../@extended/FileInputButton';
 
 const FileUploadForm: React.FC = () => {
   const {
@@ -13,6 +13,7 @@ const FileUploadForm: React.FC = () => {
     setExcelDataFile,
     generatedDocumentsBlob,
     processFiles,
+    setShouldDownloadAfterProcessing,
     downloadDocuments,
     loadExampleFiles,
   } = useFileProcessing();
@@ -70,6 +71,7 @@ const FileUploadForm: React.FC = () => {
               color="primary"
               fullWidth
               disabled={!documentTemplateFile || !excelDataFile}
+              onClick={() => setShouldDownloadAfterProcessing(false)}
             >
               Generate Documents
             </Button>
@@ -93,6 +95,7 @@ const FileUploadForm: React.FC = () => {
               color="secondary"
               fullWidth
               disabled={!documentTemplateFile || !excelDataFile}
+              onClick={() => setShouldDownloadAfterProcessing(true)}
             >
               Generate & Download
             </Button>
